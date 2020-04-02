@@ -215,11 +215,12 @@ def pageRank(b, e, recordRemove):
 			for key in block:
 				dst = block[key]
 				if dst != []:
-					updateVal = beta * (oldDic[key] / len(dst)) \
-					            + (1 - beta) * modifyFactor
+					updateVal = beta * (oldDic[key] / len(dst))
 					for d in dst:
 						currDic[d] += updateVal
 			blockCount += 1
+		for key in currDic:
+			currDic[key] += (1-beta) * modifyFactor
 		normalization(currDic)
 	with open('pageRank.txt', 'w') as f:
 		lines = []
